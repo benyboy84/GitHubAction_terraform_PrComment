@@ -14,10 +14,10 @@ if [[ -z "$GITHUB_TOKEN" ]]; then
 	exit 1
 fi
 
-if [[ -z $EXITCODE ]]; then
-    echo "There must be an exit code from a previous step."
-    exit 1
-fi
+#if [[ -z $EXITCODE ]]; then
+#    echo "There must be an exit code from a previous step."
+#    exit 1
+#fi
 
 if [[ ! "$TYPE" =~ ^(fmt|init|plan|validate)$ ]]; then
   echo -e "Unsupported command \"$TYPE\". Valid commands are \"fmt\", \"init\", \"plan\", \"validate\"."
@@ -32,7 +32,8 @@ COMMAND=$TYPE
 # Arg $INPUT is input. We strip ANSI colours.
 INPUT=$(echo "$INPUT" | sed 's/\x1b\[[0-9;]*m//g')
 # Arg $EXIT_CODE is the Terraform CLI exit code
-EXIT_CODE=$EXIT_CODE
+#EXIT_CODE=$EXIT_CODE
+EXIT_CODE=1
 
 # Read TF_WORKSPACE environment variable or use "default"
 WORKSPACE=${TF_WORKSPACE:-default}
