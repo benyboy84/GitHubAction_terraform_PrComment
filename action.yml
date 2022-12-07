@@ -1,0 +1,25 @@
+name: 'Comment Terraform Pull Requests'
+description: 'Adds comments to a pull requests from Terraform fmt/init/plan output'
+author: 'Benoit Blais'
+
+branding:
+  icon: 'git-pull-request'
+  color: 'purple'
+
+inputs:
+  type:
+    description: 'The type of comment. Options: [fmt, init, plan]'
+    required: true
+  input:
+    description: 'The comment to post from a previous step output'
+    required: true
+  exitcode:
+    description: 'The exit code from a previous step output'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - id: BashScript
+      shell: bash
+      run: bash ${{ github.action_path }}/main.sh
